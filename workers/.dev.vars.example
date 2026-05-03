@@ -1,0 +1,6 @@
+# 本地開發用的環境變數範例
+# 使用方式：cp .dev.vars.example .dev.vars
+# ⚠️ .dev.vars 已加入 .gitignore，不會進版本控制
+
+OPENAI_API_KEY=sk-your-openai-api-key-here
+ACCESS_PASSWORD=your-local-test-password

@@ -1,0 +1,104 @@
+{
+  "name": "generate_writing_scaffold",
+  "description": "根據小兔兔與小主人的對話紀錄，產出小主人寫作文所需的三份結構化輔助資料：起承轉合四宮格、心智圖、條列筆記。",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "four_structure": {
+        "type": "object",
+        "description": "起承轉合四宮格 — 寫作大綱骨架，是最主要的產物",
+        "properties": {
+          "qi": {
+            "type": "object",
+            "description": "起 — 開頭段素材（時間、地點、人物、起因）",
+            "properties": {
+              "hint": {
+                "type": "string",
+                "description": "給小主人的寫作提示（一句話）"
+              },
+              "points": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "素材要點陣列，每點為短句；若無素材則為空陣列 []"
+              }
+            },
+            "required": ["hint", "points"]
+          },
+          "cheng": {
+            "type": "object",
+            "description": "承 — 中段素材（事件的經過、細節、具體情節）",
+            "properties": {
+              "hint": { "type": "string" },
+              "points": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["hint", "points"]
+          },
+          "zhuan": {
+            "type": "object",
+            "description": "轉 — 高潮段素材（意外、轉折、印象最深的時刻、情感高峰）",
+            "properties": {
+              "hint": { "type": "string" },
+              "points": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["hint", "points"]
+          },
+          "he": {
+            "type": "object",
+            "description": "合 — 結尾段素材（收穫、感想、反思、想記住的事）",
+            "properties": {
+              "hint": { "type": "string" },
+              "points": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["hint", "points"]
+          }
+        },
+        "required": ["qi", "cheng", "zhuan", "he"]
+      },
+      "mind_map": {
+        "type": "object",
+        "description": "心智圖資料結構",
+        "properties": {
+          "center": {
+            "type": "string",
+            "description": "中心節點 — 作文題目"
+          },
+          "branches": {
+            "type": "array",
+            "description": "主要分支陣列，建議 3~6 個",
+            "items": {
+              "type": "object",
+              "properties": {
+                "topic": {
+                  "type": "string",
+                  "description": "分支主題，例如「地點」「心情」「印象畫面」"
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "此分支下的關鍵詞陣列（短詞，非整句）"
+                }
+              },
+              "required": ["topic", "keywords"]
+            }
+          }
+        },
+        "required": ["center", "branches"]
+      },
+      "bullet_notes": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "條列筆記 — 所有素材的扁平化清單，每點為短句"
+      }
+    },
+    "required": ["four_structure", "mind_map", "bullet_notes"]
+  }
+}

@@ -1,0 +1,25 @@
+name = "writing-guide-worker"
+main = "src/index.ts"
+compatibility_date = "2025-05-03"
+compatibility_flags = ["nodejs_compat"]
+
+# ── KV Namespace（日流量上限計數器）──────────────────────────────
+# 部署前需先執行：
+#   wrangler kv namespace create RATE_LIMIT_KV
+# 然後把回傳的 id 填入下方 id 欄位
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_YOUR_KV_PREVIEW_ID"
+
+# ── Secrets（敏感資料，用 wrangler secret put 設定，不寫在這裡）──
+# wrangler secret put OPENAI_API_KEY
+# wrangler secret put ACCESS_PASSWORD
+
+# ── 環境變數（非敏感）──────────────────────────────────────────
+[vars]
+# 每日 request 硬上限（防 bug loop / 密碼外流）
+DAILY_REQUEST_LIMIT = "1000"
+# 允許的前端 origin（production 填入 Cloudflare Pages URL）
+# 留空則開放所有 origin（僅建議本地開發用）
+ALLOWED_ORIGIN = ""

@@ -1,0 +1,30 @@
+# ── Node ──────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Build outputs ─────────────────────────────────────────────
+dist/
+dist-ssr/
+.wrangler/
+
+# ── 環境變數（含 Secrets，絕對不進版本控制）────────────────────
+.env
+.env.local
+.env.*.local
+workers/.dev.vars
+
+# ── OS / Editor ───────────────────────────────────────────────
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?
+
+# ── Claude / IDE 工具產生的本地設定 ─────────────────────────────
+.claude/
+
+# ── 其他 ──────────────────────────────────────────────────────
+*.log
