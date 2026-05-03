@@ -10,7 +10,7 @@
 
 import Anthropic from '@anthropic-ai/sdk'
 import OpenAI from 'openai'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import { GoogleGenerativeAI, FunctionCallingMode } from '@google/generative-ai'
 import type { AIProvider, ChatMessage, MindMapData, WritingGrid } from '../types'
 
 // ----------------------------------------
@@ -643,7 +643,7 @@ async function generateResultsOpenAI(
   })
 
   const toolCall = response.choices[0]?.message?.tool_calls?.[0]
-  if (!toolCall) throw new Error('OpenAI Function Calling 沒有回傳結果')
+  if (!toolCall || toolCall.type !== 'function') throw new Error('OpenAI Function Calling 沒有回傳結果')
   const input = JSON.parse(toolCall.function.arguments) as ToolResult
   return toolResultToOutput(input)
 }
@@ -664,7 +664,7 @@ async function generateResultsGemini(
 
   const result = await model.generateContent({
     contents: [{ role: 'user', parts: [{ text: buildConversationText(topic, messages) }] }],
-    toolConfig: { functionCallingConfig: { mode: 'ANY' as const, allowedFunctionNames: [RESULT_TOOL_SCHEMA.name] } },
+    toolConfig: { functionCallingConfig: { mode: FunctionCallingMode.ANY, allowedFunctionNames: [RESULT_TOOL_SCHEMA.name] } },
   })
 
   const candidate = result.response.candidates?.[0]

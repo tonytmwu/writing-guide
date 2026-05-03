@@ -9,8 +9,8 @@ compatibility_flags = ["nodejs_compat"]
 # 然後把回傳的 id 填入下方 id 欄位
 [[kv_namespaces]]
 binding = "RATE_LIMIT_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
-preview_id = "REPLACE_WITH_YOUR_KV_PREVIEW_ID"
+id = "7d630f17279d4d699032a8d98509c6ab"
+preview_id = "de4f00f14601454d9377aa2cfc6f257b"
 
 # ── Secrets（敏感資料，用 wrangler secret put 設定，不寫在這裡）──
 # wrangler secret put OPENAI_API_KEY
