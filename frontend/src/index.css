@@ -226,6 +226,52 @@ a { color: #6C5CE7; }
 .history-date  { font-size: .85rem; color: #aaa; }
 
 /* ========================================
+   Edie 作文集 PDF 區塊
+   ======================================== */
+.essay-archive-section { margin-top: 24px; }
+
+.essay-archive-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+.essay-archive-item {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(108,92,231,.08);
+  transition: box-shadow .2s, transform .1s;
+}
+.essay-archive-item:hover { box-shadow: 0 4px 16px rgba(108,92,231,.18); transform: translateY(-1px); }
+
+.essay-archive-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 14px 18px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.essay-archive-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+.essay-archive-title {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.4;
+}
+
+.essay-archive-badge {
+  font-size: .7rem;
+  font-weight: 700;
+  color: #fff;
+  background: #e17055;
+  border-radius: 6px;
+  padding: 2px 8px;
+  flex-shrink: 0;
+  letter-spacing: .04em;
+}
+
+/* ========================================
    畫面 2：對話
    ======================================== */
 .chat-page {

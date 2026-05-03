@@ -2,6 +2,14 @@ import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getHistory } from '../utils/storage'
 
+// Edie 已完成的作文 PDF 列表（放在 public/history/）
+const EDIE_ESSAYS = [
+  { title: '黏土捏捏的心得',                       file: '作文大綱_黏土捏捏的心得.pdf' },
+  { title: '參加一個比賽',                          file: '作文大綱_參加一個比賽.pdf' },
+  { title: '十三行博物館參觀心得',                  file: '作文大綱_十三行博物館參觀心得.pdf' },
+  { title: '寫一封信給老師，希望爭取才藝表演的機會', file: '作文大綱_寫一封信給老師，希望爭取才藝表演的機會.pdf' },
+]
+
 export default function HomePage() {
   const navigate = useNavigate()
   const [topic, setTopic] = useState('')
@@ -82,6 +90,27 @@ export default function HomePage() {
           </ul>
         </div>
       )}
+
+      {/* Edie 作文紀錄 PDF 區塊 */}
+      <div className="essay-archive-section">
+        <h2 className="section-title">📚 Edie 的作文集</h2>
+        <ul className="essay-archive-list">
+          {EDIE_ESSAYS.map(essay => (
+            <li key={essay.file} className="essay-archive-item">
+              <a
+                href={`/history/${encodeURIComponent(essay.file)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="essay-archive-link"
+              >
+                <span className="essay-archive-icon">📄</span>
+                <span className="essay-archive-title">{essay.title}</span>
+                <span className="essay-archive-badge">PDF</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
